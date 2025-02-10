@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự đoán Đột Quỵ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center text-primary">Dự đoán Đột Quỵ</h2>
+        <form method="POST" class="row g-3">
+            <div class="col-md-6">
+                <label>Giới tính (0: Nam / 1: Nữ):</label>
+                <input type="number" name="gender" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label>Tuổi:</label>
+                <input type="number" name="age" class="form-control" step="0.1" required>
+            </div>
+            <div class="col-md-6">
+                <label>Huyết áp cao (0: Không / 1: Có):</label>
+                <input type="number" name="hypertension" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label>Bệnh tim (0: Không / 1: Có):</label>
+                <input type="number" name="heart_disease" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label>Đã kết hôn (0: Không / 1: Có):</label>
+                <input type="number" name="ever_married" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label>Loại công việc (0-4):</label>
+                <input type="number" name="work_type" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label>Khu vực sinh sống (0: Nông thôn / 1: Thành thị):</label>
+                <input type="number" name="residence_type" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label>Mức đường huyết trung bình:</label>
+                <input type="number" name="avg_glucose_level" class="form-control" step="0.1" required>
+            </div>
+            <div class="col-md-6">
+                <label>Chỉ số BMI:</label>
+                <input type="number" name="bmi" class="form-control" step="0.1" required>
+            </div>
+            <div class="col-md-6">
+                <label>Tình trạng hút thuốc (0: Không / 1: Có):</label>
+                <input type="number" name="smoking_status" class="form-control" required>
+            </div>
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary mt-3">Dự đoán</button>
+            </div>
+        </form>
+
+        {% if prediction_results %}
+        <div class="mt-4">
+            <h3>Kết quả dự đoán:</h3>
+            <ul class="list-group">
+                {% for model, result in prediction_results.items() %}
+                <li class="list-group-item">{{ model }}: <strong>{{ result }}</strong></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
